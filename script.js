@@ -2,8 +2,15 @@ const notas = []
 
 function addNote() {
     const noteContent = document.getElementById('new-note-content').value;
+    const noteCategory = document.getElementById('note-category-select').value;
+    
     if (noteContent.trim() === "") {
         alert("A nota não pode estar vazia!");
+        return;
+    }
+    
+    if (noteCategory === "") {
+        alert("Por favor, selecione uma categoria!");
         return;
     }
 
@@ -14,8 +21,14 @@ function addNote() {
     const noteTextarea = document.createElement('textarea');
     noteTextarea.value = noteContent;
     noteElement.appendChild(noteTextarea);
-    notas.push(noteTextarea.value)
-    console.log('nhota', notas)
+
+    const noteCategoryElement = document.createElement('div');
+    noteCategoryElement.classList.add('note-category');
+    noteCategoryElement.textContent = `Categoria: ${noteCategory}`;
+    noteElement.appendChild(noteCategoryElement);
+
+    notas.push({ content: noteTextarea.value, category: noteCategory });
+    console.log('Notas', notas);
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-button');
@@ -27,4 +40,35 @@ function addNote() {
 
     notesContainer.appendChild(noteElement);
     document.getElementById('new-note-content').value = "";
+    document.getElementById('note-category-select').value = "";
+}
+
+document.getElementById('categoriesForm').addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevents the default form submission
+
+    AddCategories();
+});
+
+function AddCategories() {
+    const categoriesValue = document.getElementById('categories_value').value;
+
+    if (categoriesValue.trim() !== '') {
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        
+        const categoriesElement = document.createElement('div');
+        categoriesElement.classList.add('categories');
+        categoriesElement.textContent = categoriesValue;
+        
+        categoriesContainer.appendChild(categoriesElement);
+
+        const categoryOption = document.createElement('option');
+        categoryOption.value = categoriesValue;
+        categoryOption.textContent = categoriesValue;
+
+        const categorySelect = document.getElementById('note-category-select');
+        categorySelect.appendChild(categoryOption);
+
+        // Optionally, clear the input field after adding the category
+        document.getElementById('categories_value').value = '';
+    }
 }

@@ -11,7 +11,20 @@
         <h1>Bloco de Anotações</h1>
         <div class="new-note">
             <textarea id="new-note-content" placeholder="Digite sua nota aqui..."></textarea>
+            
+            <select id="note-category-select">
+                <option value="">Selecione uma categoria</option>
+            </select>
+            
             <button onclick="addNote()">Adicionar Nota</button>
+            
+            <form id="categoriesForm" action="">
+                <label for="categories">Categoria:</label><br>
+                <input type="text" id="categories_value" value=""><br><br>
+                <input type="submit" value="Enviar">
+            </form>
+        
+            <div id="categoriesContainer"></div>
         </div>
         <div class="notes" id="notes"></div>
     </div>
