@@ -1,3 +1,5 @@
+const notas = []
+
 function addNote() {
     const noteContent = document.getElementById('new-note-content').value;
     if (noteContent.trim() === "") {
@@ -12,6 +14,8 @@ function addNote() {
     const noteTextarea = document.createElement('textarea');
     noteTextarea.value = noteContent;
     noteElement.appendChild(noteTextarea);
+    notas.push(noteTextarea.value)
+    console.log('nhota', notas)
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-button');
