@@ -25,7 +25,7 @@ O objetivo desta atividade é desenvolver uma aplicação de bloco de anotaçõe
 ### 4. Execução do Sprint (90 minutos)
 - **Cada time, vai clonar o repositório (FORK) e vai com base nele realizar a Sprint**
 - **Desenvolvimento colaborativo das funcionalidades planejadas.**
-- **Uso de práticas de Kanban para gerenciar o fluxo de trabalho.**
+- **Uso de práticas de Kanban para gerenciar o fluxo de trabalho. (Estrutura do projeto, três colunas: ToDo, Doing, Done)**
 - **Check-ins rápidos (stand-ups) a cada 30 minutos para monitorar o progresso e ajustar planos conforme necessário.**
 
 ### 5. Revisão e Retrospectiva (30 minutos)
