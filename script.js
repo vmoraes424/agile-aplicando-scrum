@@ -5,40 +5,7 @@ window.onload = () => {
   const categorySelect = document.getElementById("note-category-select");
 
   notas.forEach((nota) => {
-    const noteElement = document.createElement("div");
-    noteElement.classList.add("note");
-
-    const noteTextarea = document.createElement("textarea");
-    noteTextarea.value = nota.content;
-    noteElement.appendChild(noteTextarea);
-
-    const noteCategoryElement = document.createElement("div");
-    noteCategoryElement.classList.add("note-category");
-    noteCategoryElement.textContent = `Categoria: ${nota.category}`;
-    noteElement.appendChild(noteCategoryElement);
-
-    const editButton = document.createElement("button");
-    editButton.classList.add("edit-button");
-    editButton.innerHTML = "Editar";
-    editButton.onclick = () => {
-      noteTextarea.removeAttribute("readonly");
-      noteTextarea.focus();
-    };
-    noteElement.appendChild(editButton);
-
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button");
-    deleteButton.innerHTML = "&times;";
-    deleteButton.onclick = () => {
-      notesContainer.removeChild(noteElement);
-      notas = notas.filter(
-        (n) => n.content !== noteTextarea.value || n.category !== nota.category
-      );
-      localStorage.setItem("notas", JSON.stringify(notas));
-    };
-    noteElement.appendChild(deleteButton);
-
-    notesContainer.appendChild(noteElement);
+    createNoteElement(nota.title, nota.content, nota.category, notesContainer);
   });
 
   notas.forEach((nota) => {
@@ -56,8 +23,14 @@ window.onload = () => {
 };
 
 function addNote() {
+  const noteTitle = document.getElementById("addTitle").value;
   const noteContent = document.getElementById("new-note-content").value;
   const noteCategory = document.getElementById("note-category-select").value;
+
+  if (noteTitle.trim() === "") {
+    alert("O título não pode estar vazio!");
+    return;
+  }
 
   if (noteContent.trim() === "") {
     alert("A nota não pode estar vazia!");
@@ -70,24 +43,65 @@ function addNote() {
   }
 
   const notesContainer = document.getElementById("notes");
+
+  createNoteElement(noteTitle, noteContent, noteCategory, notesContainer);
+
+  notas.push({
+    title: noteTitle,
+    content: noteContent,
+    category: noteCategory,
+  });
+  localStorage.setItem("notas", JSON.stringify(notas));
+
+  document.getElementById("addTitle").value = "";
+  document.getElementById("new-note-content").value = "";
+  document.getElementById("note-category-select").value = "";
+}
+
+function createNoteElement(title, content, category, container) {
   const noteElement = document.createElement("div");
-  noteElement.classList.add("note");
+  noteElement.classList.add(
+    "note",
+    "bg-white",
+    "shadow",
+    "rounded",
+    "p-4",
+    "mb-4"
+  );
+
+  const noteTitleElement = document.createElement("h2");
+  noteTitleElement.classList.add("text-xl", "font-bold", "mb-2");
+  noteTitleElement.textContent = title;
+  noteElement.appendChild(noteTitleElement);
 
   const noteTextarea = document.createElement("textarea");
   noteTextarea.setAttribute("readonly", true);
-  noteTextarea.value = noteContent;
+  noteTextarea.value = content;
+  noteTextarea.classList.add(
+    "w-full",
+    "border",
+    "border-gray-300",
+    "rounded",
+    "p-2",
+    "mb-2"
+  );
   noteElement.appendChild(noteTextarea);
 
   const noteCategoryElement = document.createElement("div");
-  noteCategoryElement.classList.add("note-category");
-  noteCategoryElement.textContent = `Categoria: ${noteCategory}`;
+  noteCategoryElement.classList.add("note-category", "font-bold", "mb-2");
+  noteCategoryElement.textContent = `Categoria: ${category}`;
   noteElement.appendChild(noteCategoryElement);
 
-  notas.push({ content: noteTextarea.value, category: noteCategory });
-  localStorage.setItem("notas", JSON.stringify(notas));
-
   const editButton = document.createElement("button");
-  editButton.classList.add("edit-button");
+  editButton.classList.add(
+    "edit-button",
+    "bg-blue-500",
+    "text-white",
+    "py-1",
+    "px-2",
+    "rounded",
+    "mr-2"
+  );
   editButton.innerHTML = "Editar";
   editButton.onclick = () => {
     noteTextarea.removeAttribute("readonly");
@@ -96,21 +110,26 @@ function addNote() {
   noteElement.appendChild(editButton);
 
   const deleteButton = document.createElement("button");
-  deleteButton.classList.add("delete-button");
+  deleteButton.classList.add(
+    "delete-button",
+    "bg-red-500",
+    "text-white",
+    "py-1",
+    "px-2",
+    "rounded"
+  );
   deleteButton.innerHTML = "&times;";
   deleteButton.onclick = () => {
-    notesContainer.removeChild(noteElement);
+    container.removeChild(noteElement);
     notas = notas.filter(
-      (n) => n.content !== noteTextarea.value || n.category !== noteCategory
+      (n) =>
+        n.title !== title || n.content !== content || n.category !== category
     );
     localStorage.setItem("notas", JSON.stringify(notas));
   };
   noteElement.appendChild(deleteButton);
 
-  notesContainer.appendChild(noteElement);
-
-  document.getElementById("new-note-content").value = "";
-  document.getElementById("note-category-select").value = "";
+  container.appendChild(noteElement);
 }
 
 function AddCategories() {
@@ -120,7 +139,13 @@ function AddCategories() {
     const categoriesContainer = document.getElementById("categoriesContainer");
 
     const categoriesElement = document.createElement("div");
-    categoriesElement.classList.add("categories");
+    categoriesElement.classList.add(
+      "categories",
+      "bg-gray-200",
+      "rounded",
+      "p-2",
+      "mb-2"
+    );
     categoriesElement.textContent = categoriesValue;
 
     categoriesContainer.appendChild(categoriesElement);

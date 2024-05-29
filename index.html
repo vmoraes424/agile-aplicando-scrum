@@ -4,25 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notas com Categorias</title>
-    <link rel="stylesheet" href="output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
   </head>
-  <body>
-    <div>
-      <textarea
-        id="new-note-content"
-        placeholder="Digite sua nota aqui..."
-      ></textarea>
-      <select id="note-category-select">
-        <option value="" disabled selected>Selecione uma categoria</option>
-      </select>
-      <button onclick="addNote()">Adicionar Nota</button>
+  <body class="flex flex-col min-h-screen bg-gray-100">
+    <div class="flex-1 p-6">
+      <div class="max-w-xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6">Gerenciador de Notas</h1>
+        <div class="mb-4">
+          <label for="addTitle" class="block text-lg font-semibold mb-2"
+            >Título:</label
+          >
+          <input
+            type="text"
+            id="addTitle"
+            placeholder="Digite o Título"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="new-note-content" class="block text-lg font-semibold mb-2"
+            >Nota:</label
+          >
+          <textarea
+            id="new-note-content"
+            placeholder="Digite sua nota aqui..."
+            class="w-full p-2 border border-gray-300 rounded"
+          ></textarea>
+        </div>
+        <button
+          onclick="addNote()"
+          class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        >
+          Adicionar Nota
+        </button>
+
+        <div id="categoriesForm" class="mt-6">
+          <label
+            for="note-category-select"
+            class="block text-lg font-semibold mb-2"
+            >Categoria:</label
+          >
+          <select
+            id="note-category-select"
+            class="w-full p-2 border border-gray-300 rounded mb-4"
+          >
+            <option value="" disabled selected>Selecione uma categoria</option>
+          </select>
+          <div class="flex items-center mb-4">
+            <input
+              type="text"
+              id="categories_value"
+              placeholder="Nova categoria"
+              class="w-full p-2 border border-gray-300 rounded mr-2"
+            />
+            <button
+              onclick="AddCategories()"
+              class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+            >
+              Adicionar Categoria
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="categoriesForm">
-      <input type="text" id="categories_value" placeholder="Nova categoria" />
-      <button onclick="AddCategories()">Adicionar Categoria</button>
+    <h1 class="text-center font-bold text-3xl">Notas:</h1>
+    <div class="flex-1 flex items-start justify-center p-6">
+      <div id="categoriesContainer" class="mr-6"></div>
+      <div
+        id="notes"
+        class="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-4xl"
+      ></div>
     </div>
-    <div id="categoriesContainer"></div>
-    <div id="notes"></div>
-    <script src="./script.js" />
+    <script src="./script.js"></script>
   </body>
 </html>
