@@ -11,7 +11,7 @@ O objetivo desta atividade é desenvolver uma aplicação de bloco de anotaçõe
 
 ### 2. Formação de Times e Planejamento Inicial (20 minutos)
 - **Divisão dos alunos em times de 4-5 pessoas.**
-- **Cada time escolhe um Product Owner (PO), embora ele também vá programar.**
+- **Cada time escolhe um Product Owner (PO), embora ele também vai programar.**
 - **Apresentação da visão do produto: uma aplicação simples de bloco de anotações para aulas Estilo [NOTION](https://www.notion.so/)**
 
 ### 3. Definição do Backlog e Planejamento do Sprint (20 minutos)
