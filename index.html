@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notas com Categorias</title>
     <link rel="stylesheet" href="output.css" />
-  </head>
-  <body>
+</head>
+<body>
     <div>
-      <textarea
-        id="new-note-content"
-        placeholder="Digite sua nota aqui..."
-      ></textarea>
-      <select id="note-category-select">
-        <option value="" disabled selected>Selecione uma categoria</option>
-      </select>
-      <button onclick="addNote()">Adicionar Nota</button>
+        <h1>Titulo: <input type="text" id="addTitle" placeholder="Digite o Título"></h1>
+        <textarea id="new-note-content" placeholder="Digite sua nota aqui..."></textarea>
+        <select id="note-category-select">
+            <option value="" disabled selected>Selecione uma categoria</option>
+        </select>
+        <button onclick="addNote()">Adicionar Nota</button>
     </div>
     <div id="categoriesForm">
-      <input type="text" id="categories_value" placeholder="Nova categoria" />
-      <button onclick="AddCategories()">Adicionar Categoria</button>
+        <input type="text" id="categories_value" placeholder="Nova categoria" />
+        <button onclick="AddCategories()">Adicionar Categoria</button>
     </div>
     <div id="categoriesContainer"></div>
     <div id="notes"></div>
-    <script src="./script.js" />
-  </body>
+    <script src="./script.js"></script>
+</body>
 </html>
