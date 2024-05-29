@@ -58,6 +58,21 @@ function addNote() {
   document.getElementById("note-category-select").value = "";
 }
 
+function editNote(noteElement, noteTitle, noteContent, noteCategory) {
+  const noteTextarea = noteElement.querySelector("textarea");
+  noteTextarea.removeAttribute("readonly");
+  noteTextarea.focus();
+
+  const index = notas.findIndex(
+    (nota) =>
+      nota.title === noteTitle &&
+      nota.content === noteContent &&
+      nota.category === noteCategory
+  );
+  notas[index].content = noteTextarea.value;
+  localStorage.setItem("notas", JSON.stringify(notas));
+}
+
 function createNoteElement(title, content, category, container) {
   const noteElement = document.createElement("div");
   noteElement.classList.add(
@@ -104,8 +119,7 @@ function createNoteElement(title, content, category, container) {
   );
   editButton.innerHTML = "Editar";
   editButton.onclick = () => {
-    noteTextarea.removeAttribute("readonly");
-    noteTextarea.focus();
+    editNote(noteElement, title, content, category);
   };
   noteElement.appendChild(editButton);
 
