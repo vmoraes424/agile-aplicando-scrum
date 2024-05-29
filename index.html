@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloco de Anotações</title>
-    <link rel="stylesheet" href="./output.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Bloco de Anotações</h1>
-        <div class="new-note">
-            <textarea id="new-note-content" placeholder="Digite sua nota aqui..."></textarea>
-            <button onclick="addNote()">Adicionar Nota</button>
-        </div>
-        <div class="notes" id="notes"></div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notas com Categorias</title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body>
+    <div>
+      <textarea
+        id="new-note-content"
+        placeholder="Digite sua nota aqui..."
+      ></textarea>
+      <select id="note-category-select">
+        <option value="" disabled selected>Selecione uma categoria</option>
+      </select>
+      <button onclick="addNote()">Adicionar Nota</button>
     </div>
-    <script src="script.js"></script>
-</body>
+    <div id="categoriesForm">
+      <input type="text" id="categories_value" placeholder="Nova categoria" />
+      <button onclick="AddCategories()">Adicionar Categoria</button>
+    </div>
+    <div id="categoriesContainer"></div>
+    <div id="notes"></div>
+    <script src="./script.js" />
+  </body>
 </html>
